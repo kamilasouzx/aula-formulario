@@ -12,7 +12,6 @@ export function Home() {
         console.log("Dados enviados com sucesso", data)
         reset();
       }
-
     return(
         <div>
         <h1 className='text 3xl font-medium italic mb-4'>Seja bem-vindo! Faça login para iniciar:</h1>
