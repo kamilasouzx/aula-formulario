@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export function Form (){
+
+  const [dados, setDados] = useState({mensagem:"..."});
     
     const { register,
         handleSubmit,
@@ -9,10 +12,11 @@ export function Form (){
       //Arrow Function
       const onSubmit = (data) => {
     
-        alert("Formulário enviado: " + JSON.stringify(data));
-        console.log("Dados enviados com sucesso", data)
-        reset();
-    
+        fetch('http://localhost:8080/api/mensagem')
+          .then(response => response.json())
+          .then(data => setDados(data))
+
+          console.log(dados.mensagem);
       }
 
     return (

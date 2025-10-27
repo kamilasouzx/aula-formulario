@@ -5,7 +5,7 @@ export function Header() {
         <header>
             <nav className='bg-white p-2 flex gap-4'>
                 <Link to="/">INÍCIO</Link> 
-                <Link to="/cadastro">CADASTRO</Link>  
+                <Link to="/consultar">CONSULTAR</Link>  
             </nav>
         </header>
     )
