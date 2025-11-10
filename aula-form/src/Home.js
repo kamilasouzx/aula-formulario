@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 export function Home() {
     const { register,
@@ -31,6 +32,7 @@ export function Home() {
                 {errors.senha && <p style={{ color: "red" }}>{errors.senha.message}</p>}
                 <div className='flex justify-center'>
                 <button className="w-1/2 mt-2 p-3 text-white rounded-lg bg-sky-500 hover:bg-sky-700" type='submit'>Enviar</button>
+                <Link classname='flex items-center text-sky-500 underline font-light text-xs' to="/cadastrar">Clique aqui para cadastrar</Link>
                 </div>
         </div>
     )

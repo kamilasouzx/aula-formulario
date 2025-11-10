@@ -24,25 +24,25 @@ export function Form() {
       );
       if (response.ok) {
         const mensagemSucesso = await response.text();
-        setMensagem({ mensagemSucesso })
+        setMensagem({ type: 'sucesso', text: mensagemSucesso })
         console.log("Resposta do backend", mensagemSucesso);
         reset()
       } else {
         const mensagemFalhou = await response.text();
-        setMensagem({ mensagemFalhou })
+        setMensagem({type:'falhou', text: mensagemFalhou })
         console.error('Erro ao cadastrar.');
 
       }
     } catch (error) {
-      console.error('Erro ao buscar a mensagem:', error);
-      setMensagem('Erro ao buscar a mensagem no servidor.');
+      console.error('Erro ao conectar no backend, verifique a conexão', error);
+      setMensagem({ type:'falhou', text: 'Erro ao conectar no backend.'});
 
     }
   }
 
   return (
     <div>
-      <h1 className='text-3xl text-900 mb-4'>Criando Formulários</h1>
+      <h1 className='text-3xl text-900 mb-4'>Cadastrar Usuários</h1>
       <form className='space-y-2' onSubmit={handleSubmit(onSubmit)} noValidate>
         <label className='block text-sm font-medium text-gray-700'>Nome </label>
         <input
@@ -80,6 +80,13 @@ export function Form() {
           <button className="w-1/2 mt-2 p-3 text-white rounded-lg bg-sky-500 hover:bg-sky-700" type='submit'>Enviar</button>
         </div>
       </form>
+
+      {mensagem && (
+                <div className={`p-3 rounded-lg text-center ${mensagem.type === 'sucesso' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    }`}>{mensagem.text}
+                </div>
+            )}
+
     </div>
   )
 }
